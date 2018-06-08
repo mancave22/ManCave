@@ -179,7 +179,7 @@
   </extension>
 </addon>
 
-<addon id="repository.mancave" name="Man Cave Repo" version="0.2" provider-name="Man Cave Entertainment">
+<addon id="repository.mancave" name="Man Cave Repo" version="0.3" provider-name="Man Cave Entertainment">
 	<extension point="xbmc.addon.repository" name="Man Cave Repository">
 			<info compressed="false">https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml.md5</checksum>
@@ -343,6 +343,32 @@
 - Removed unicode logging ability from log module
 - Removed parsedom(2) module, legacy client.parsedom is now used only</news>
 	</extension>
+</addon>
+
+<addon id="script.module.universalscrapers" name="Universal Scrapers" version="1.0.4.5" provider-name="Team Universal">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.beautifulsoup" version="3.2.1"/>
+        <import addon="script.module.futures" version="2.2.0"/>
+        <import addon="script.module.requests"/>
+        <import addon="script.module.six"/>
+        <import addon="repository.universalscrapers"/>
+	<import addon="script.module.resolveurl" version="5.0.00" optional="true"/>
+
+                <!--<import addon="script.mrknow.urlresolver" version="2016.10.30.2" optional="true"/>-->
+    </requires>
+    <extension point="xbmc.python.module" library="lib"/>
+    <extension point="xbmc.python.pluginsource" library="lib/default.py">
+        <provides>executable</provides>
+    </extension>
+        <extension point="xbmc.addon.metadata">
+            <platform>all</platform>
+            <summary lang="en">Scrape common video host for URL's to be playable in XBMC/Kodi.</summary>
+            <description lang="en">Scrape common video host for URL's to be playable in XBMC/Kodi, simplifying addon development of video plugins requiring multi video hosts.
+            </description>
+            <license>GPL v3</license>
+            <source>https://</source>
+        </extension>
 </addon>
 
 <addon id="script.video.F4mProxy" name="F4mProxy" version="2.8.7" provider-name="Shani">
