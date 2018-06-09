@@ -75,7 +75,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.mcent" name="Man Cave Entertainment" version="1.0" provider-name="Man Cave & Man Cave Tech">
+<addon id="plugin.video.mcent" name="Man Cave Entertainment" version="1.1" provider-name="Man Cave and Man Cave Tech">
     <requires>
         <import addon="xbmc.python" version="2.19.0" />
         <import addon="script.module.universalscrapers" version="1.0.0" />
@@ -179,7 +179,7 @@
   </extension>
 </addon>
 
-<addon id="repository.mancave" name="Man Cave Repo" version="0.3" provider-name="Man Cave Entertainment">
+<addon id="repository.mancave" name="Man Cave Repo" version="0.4" provider-name="Man Cave Entertainment">
 	<extension point="xbmc.addon.repository" name="Man Cave Repository">
 			<info compressed="false">https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml.md5</checksum>
