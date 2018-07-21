@@ -75,6 +75,58 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.mancaveflix" name="Man Cave Flix" version="2.3" provider-name="Man Cave Entertainment">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0" />
+        <import addon="script.module.universalscrapers" version="1.0.0" />
+        <import addon="script.module.python.koding.aio" version="0.9.6.6" />
+        <import addon="script.module.beautifulsoup" version="3.2.1" />
+        <import addon="script.module.requests" version="2.9.1" />
+        <import addon="script.module.addon.common" version="2.0.0" />
+        <import addon="script.module.xmltodict" version="0.9.0" />
+        <!--<import addon="script.module.web-pdb" version="1.0"/>-->
+        <import addon="script.module.resolveurl" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="[login|startup]" />
+    <extension point="xbmc.addon.metadata">
+      <summary lang="en">Movies Tv Shows and so much more</summary>
+      <description lang="en">Man Cave Entertainment presents Man Cave Flix</description>
+      <disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+      <platform>all</platform>
+        <website>mancavekodi.com</website>
+        <video_guide></video_guide>
+    </extension>
+</addon>
+
+<addon id="plugin.video.MancaveTechStreams" name="Mancave Tech Streams" version="1.0" provider-name="MancaveTech">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0" />
+        <import addon="script.module.universalscrapers" version="1.0.0" />
+        <import addon="script.module.python.koding.aio" version="0.9.6.6" />
+        <import addon="script.module.beautifulsoup" version="3.2.1" />
+        <import addon="script.module.requests" version="2.9.1" />
+        <import addon="script.module.addon.common" version="2.0.0" />
+        <import addon="script.module.xmltodict" version="0.9.0" />
+        <!--<import addon="script.module.web-pdb" version="1.0"/>-->
+        <import addon="script.module.resolveurl" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="[login|startup]" />
+    <extension point="xbmc.addon.metadata">
+      <summary lang="en">Movie Tv Shows</summary>
+      <summary lang="he">MancaveTech Streams</summary>
+      <description lang="en"></description>
+      <disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+      <platform>all</platform>
+        <website></website>
+    </extension>
+</addon>
+
 <addon id="plugin.video.mcadult" name="Man Cave XXX" version="1.0" provider-name="Man Cave">
     <requires>
         <import addon="xbmc.python" version="2.19.0" />
@@ -124,6 +176,31 @@
         <platform>all</platform>
         <website/>
         <video_guide></video_guide>
+    </extension>
+</addon>
+
+<addon id="plugin.video.mcjamz" name="Man Cave Jamz" version="1.2" provider-name="Man Cave Entertainment">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0" />
+        <import addon="script.module.universalscrapers" version="1.0.0" />
+        <import addon="script.module.python.koding.aio" version="0.9.6.6" />
+        <import addon="script.module.beautifulsoup" version="3.2.1" />
+        <import addon="script.module.requests" version="2.9.1" />
+        <import addon="script.module.addon.common" version="2.0.0" />
+        <import addon="script.module.xmltodict" version="0.9.0" />
+        <!--<import addon="script.module.web-pdb" version="1.0"/>-->
+        <import addon="script.module.resolveurl" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>audio video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="[login|startup]" />
+    <extension point="xbmc.addon.metadata">
+      <summary lang="en">Man Cave Music</summary>
+      <description lang="en">Man Cave Entertainment Everthing Music.</description>
+      <disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+      <platform>all</platform>
+        <website>http://mancavekodi.com</website>
     </extension>
 </addon>
 
@@ -205,7 +282,7 @@
   </extension>
 </addon>
 
-<addon id="repository.mancave" name="Man Cave Repo" version="1.0" provider-name="Man Cave Entertainment">
+<addon id="repository.mancave" name="Man Cave Repo" version="1.1" provider-name="Man Cave Entertainment">
 	<extension point="xbmc.addon.repository" name="Man Cave Repository">
 			<info compressed="false">https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml.md5</checksum>
