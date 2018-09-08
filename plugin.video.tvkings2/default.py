@@ -15,7 +15,7 @@ fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_
 username     = control.setting('Username')
 password     = control.setting('Password')
 
-host         = 'http://main.tvstreams.xyz'
+host         = 'http://tvkings.tvstreams.xyz'
 port         = '83'
 
 live_url     = '%s:%s/enigma2.php?username=%s&password=%s&type=get_live_categories'%(host,port,username,password)
@@ -63,7 +63,7 @@ def start():
 		if auth == "":
 			line1 = "[COLOR red]Incorrect Login Details![/COLOR]"
 			line2 = "Please Re-enter" 
-			line3 = "To purchase account email:[COLOR silver] tvkingsiptv@gmail.com[/COLOR]" 
+			line3 = "To purchase account go to buytvkings.mancavekodi.com[/COLOR]" 
 			xbmcgui.Dialog().ok('TV Kings', line1, line2, line3)
 			start()
 		else:
@@ -164,7 +164,7 @@ def vod(url):
 		
 ##########################################
 def catchup():
-    loginurl   = "http://main.tvstreams.xyz:83/get.php?username=" + username + "&password=" + password + "&type=m3u_plus&output=ts"
+    loginurl   = "http://tvkings.tvstreams.xyz:83/get.php?username=" + username + "&password=" + password + "&type=m3u_plus&output=m3u8"
     try:
         connection = urllib2.urlopen(loginurl)
         print connection.getcode()
@@ -174,7 +174,7 @@ def catchup():
         
     except urllib2.HTTPError, e:
         print e.getcode()
-        dialog.ok("[COLOR white]Expired Account[/COLOR]",'[COLOR white]You cannot use this service with an expired account[/COLOR]',' ','[COLOR white]Please check your account information[/COLOR]')
+        dialog.ok("[COLOR white]Expired Account[/COLOR]",'[COLOR white]You cannot use this service with an expired account go to buytvkings.mancavekodi.com[/COLOR]',' ','[COLOR white]Please check your account information[/COLOR]')
         sys.exit(1)
         xbmc.executebuiltin("Dialog.Close(busydialog)")
 
@@ -319,9 +319,9 @@ def search():
 		url  = tools.regex_from_to(a,'"stream_id":"','"')
 		thumb= tools.regex_from_to(a,'stream_icon":"','"').replace('\/','/')
 		if text in name.lower():
-			tools.addDir(name,play_url+url+'.ts',4,thumb,fanart,'')
+			tools.addDir(name,play_url+url+'.m3u8',4,thumb,fanart,'')
 		elif text not in name.lower() and text in name:
-			tools.addDir(name,play_url+url+'.ts',4,thumb,fanart,'')
+			tools.addDir(name,play_url+url+'.m3u8',4,thumb,fanart,'')
 
 	
 def settingsmenu():
@@ -522,8 +522,8 @@ def correctPVR():
 	jsonSetPVR = '{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"setting":"pvrmanager.enabled", "value":true},"id":1}'
 	IPTVon 	   = '{"jsonrpc":"2.0","method":"Addons.SetAddonEnabled","params":{"addonid":"pvr.iptvsimple","enabled":true},"id":1}'
 	nulldemo   = '{"jsonrpc":"2.0","method":"Addons.SetAddonEnabled","params":{"addonid":"pvr.demo","enabled":false},"id":1}'
-	loginurl   = "http://main.tvstreams.xyz:83/get.php?username=" + username_text + "&password=" + password_text + "&type=m3u_plus&output=ts"
-	EPGurl     = "http://main.tvstreams.xyz:83/xmltv.php?username=" + username_text + "&password=" + password_text + "&type=m3u_plus&output=ts"
+	loginurl   = "http://tvkings.tvstreams.xyz:83/get.php?username=" + username_text + "&password=" + password_text + "&type=m3u_plus&output=m3u8"
+	EPGurl     = "http://tvkings.tvstreams.xyz:83/xmltv.php?username=" + username_text + "&password=" + password_text + "&type=m3u_plus&output=m3u8"
 
 	xbmc.executeJSONRPC(jsonSetPVR)
 	xbmc.executeJSONRPC(IPTVon)
