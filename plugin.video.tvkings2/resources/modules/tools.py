@@ -1,5 +1,5 @@
 import os,re,sys,xbmc,json,base64,client,control,string,urllib,urlparse,requests,shutil,xbmcplugin,xbmcgui,socket
-ADDONTITLE     = 'TV Kings'
+ADDONTITLE     = '[COLOR darkgrey]TV Kings[/COLOR]'
 
 def regex_from_to(text, from_string, to_string, excluding=True):
 	if excluding:
@@ -59,30 +59,27 @@ def OPEN_URL(url):
 def clear_cache():
 	xbmc.log('CLEAR CACHE ACTIVATED')
 	xbmc_cache_path = os.path.join(xbmc.translatePath('special://home'), 'cache')
-	confirm=xbmcgui.Dialog().yesno("Please Confirm","Please Confirm You Wish To Delete Your Kodi Application Data","","","Cancel","Clear")
-	if confirm:
-		if os.path.exists(xbmc_cache_path)==True:
-			for root, dirs, files in os.walk(xbmc_cache_path):
-				file_count = 0
-				file_count += len(files)
-				if file_count > 0:
+	if os.path.exists(xbmc_cache_path)==True:
+		for root, dirs, files in os.walk(xbmc_cache_path):
+			file_count = 0
+			file_count += len(files)
+			if file_count > 0:
 
 
-						for f in files:
-							try:
-								os.unlink(os.path.join(root, f))
-							except:
-								pass
-						for d in dirs:
-							try:
-								shutil.rmtree(os.path.join(root, d))
-							except:
-								pass
+					for f in files:
+						try:
+							os.unlink(os.path.join(root, f))
+						except:
+							pass
+					for d in dirs:
+						try:
+							shutil.rmtree(os.path.join(root, d))
+						except:
+							pass
 
 
-		dialog = xbmcgui.Dialog()
-		dialog.ok(ADDONTITLE, "Cache Cleared Successfully!")
-		xbmc.executebuiltin("Container.Refresh()")
+	dialog = xbmcgui.Dialog()
+	dialog.ok(ADDONTITLE, "Cache Cleared Successfully!")
 		
 def get_params():
 	param=[]

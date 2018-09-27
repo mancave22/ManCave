@@ -24,37 +24,180 @@ import urllib2,xbmc,xbmcgui,os,shutil,zipfile,re,string,time
 import datetime
 from resources.modules import control
 from resources.modules import downloader
+from resources.modules import tools
 
 
 username     =  control.setting('Username')
 password     =  control.setting('Password')
 USERDATA     =  xbmc.translatePath(os.path.join('special://home/userdata',''))
 ini          =  xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvkings2/resources/ivue','addons_index.ini'))
+drxini          =  xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvkings2/resources/ivue','addons2.ini.ini'))
 inizip       = 	xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvkings2/resources/ivue','addons_index.zip'))
 tmpini       =  xbmc.translatePath(os.path.join('special://home/userdata',''))
 ivuetarget   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide/'))
 ivueaddons2ini   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide/addons2.ini'))
 ivuecreate   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/plugin.video.IVUEcreator/'))
 ivuecreateini   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/plugin.video.IVUEcreator/addons_index.ini'))
+ivuecreateini2   =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/plugin.video.IVUEcreator/custom_channels.ini'))
+iVue_SETTINGS = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide','settings.xml'))
+UseriVueSets = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide','oldsettings.xml'))
+iVueSet = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvkings2/resources/ivue','ivuesettings.xml'))
+iVueFold = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvkings2/resources/ivue'))
+iVue_DATA = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide/'))
 
-def iVueInt():
+V_drxskinpath = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide/resources/skins/'))
+V_drxskin = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide/resources/skins/Hypersonic TV'))
+V_drxaddons2ini = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide','addons2.ini'))
+V_drxcatini = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide','categories.ini'))
+V_drxsetxml = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide','settings.xml'))
+
+
+
+path_to_channels = xbmc.translatePath('special://profile/addon_data/script.ivueguide/amylist.xml')
+timeshift = xbmc.translatePath('special://profile/addon_data/script.ivueguide/timezone.ini')
+shifttime     = control.setting('shift.time')
+realamylist = "http://ivuetvguide.com/ivueguide/amylist.zip"
+
+
+if shifttime == "0":
+	shifttime = "-1:00"
+if shifttime == "1":
+	shifttime = "-2:00"
+if shifttime == "2":
+	shifttime = "-3:00"
+if shifttime == "3":
+	shifttime = "-4:00"
+if shifttime == "4":
+	shifttime = "-5:00"
+if shifttime == "5":
+	shifttime = "-6:00"
+if shifttime == "6":
+	shifttime = "-7:00"
+if shifttime == "7":
+	shifttime = "-8:00"
+if shifttime == "8":
+	shifttime = "-9:00"
+if shifttime == "9":
+	shifttime = "-10:00"
+if shifttime == "10":
+	shifttime = "-11:00"
+if shifttime == "11":
+	shifttime = "-12:00"
+if shifttime == "12":
+	shifttime = "+12:00"
+if shifttime == "13":
+	shifttime = "+11:00"
+if shifttime == "14":
+	shifttime = "+10:00"
+if shifttime == "15":
+	shifttime = "+9:00"
+if shifttime == "16":
+	shifttime = "+8:00"
+if shifttime == "17":
+	shifttime = "+7:00"
+if shifttime == "18":
+	shifttime = "+6:00"
+if shifttime == "19":
+	shifttime = "+5:00"
+if shifttime == "20":
+	shifttime = "+4:00"
+if shifttime == "21":
+	shifttime = "+3:00"
+if shifttime == "22":
+	shifttime = "+2:00"
+if shifttime == "23":
+	shifttime = "+1:00"
+
+	
+
+
+def iVueInt2():
+	xbmc.executebuiltin("XBMC.ActivateWindow(Home)")
+	xbmc.executebuiltin('RunAddon(plugin.video.tvkings2)')
 	xbmc.executebuiltin("ActivateWindow(busydialog)")
 	dp = xbmcgui.DialogProgress()
-	dp.create("TV Kings","Copying ini",'', 'Please Wait')
-	unzip(inizip,ivuecreate,dp)
-	time.sleep(5)
+	dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Setting up iVue",'', 'Please Wait')
+
+
+	if not os.path.exists(iVue_DATA):
+		os.makedirs(iVue_DATA)
+		
+	if os.path.isfile(V_drxaddons2ini):	
+		os.remove(V_drxaddons2ini)
+
+	if os.path.isfile(iVue_SETTINGS):
+		os.remove(iVue_SETTINGS)
+		
+	if os.path.isfile(V_drxcatini):
+		os.remove(V_drxcatini)
+		
+	if os.path.isfile(timeshift):	
+		os.remove(timeshift)
+		
+
+	dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Locating Files",'', 'Please Wait')
+	amylist_install('amylist.xml',realamylist)
+	downloader.download(drxsetxml, V_drxsetxml, dp)	
+	downloader.download(drxaddons2ini, V_drxaddons2ini, dp)
+	downloader.download(drxcatini, V_drxcatini, dp)
+	
+	#if os.path.isfile(V_drxskin):
+		#os.remove(V_drxskin)
+		
+	#drxskin_install('Durex_TV',drxskins)
+		
+	dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Adding Information",'', 'Please Wait')
+	a = open(V_drxaddons2ini).read()
+	b = a.replace('<HypersonicIPTV2UN>',username).replace('<HypersonicIPTV2PW>',password)
+	f = open(V_drxaddons2ini, mode='w')
+	f.write(str(b))
+	f.close()
+	
+	alist = []
+	shift = []
+	z = open(path_to_channels).read()
+	all_chan = tools.regex_get_all(z,'<channel id="','</channel>')
+	for a in all_chan:
+		amychannel = tools.regex_from_to(a,'<display-name lang="en">','</display-name>')
+		alist.append(amychannel)
+		alist.sort()
+		
+	for e in alist:
+		line = '%s = %s\n'%(e,shifttime)
+		shift.append(line)
+		
+		
+	for g in shift:
+		l = open(timeshift, mode='a')
+		l.write(g)
+
+	xbmc.executebuiltin("Dialog.Close(busydialog)")
+		
+
+def iVueInt():
+	xbmc.executebuiltin("XBMC.ActivateWindow(Home)")
+	xbmc.executebuiltin('RunAddon(plugin.video.tvkings2)')
+	xbmc.executebuiltin("ActivateWindow(busydialog)")
+	dp = xbmcgui.DialogProgress()
+	dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Copying ini",'', 'Please Wait')
+	
+	if not os.path.isfile(ivuecreateini):
+		if not os.path.exists(ivuecreate):
+			os.makedirs(ivuecreate)
+	shutil.copyfile(ini, ivuecreateini)	
+	
+	if not os.path.isfile(ivuecreateini2):
+		if not os.path.exists(ivuecreate):
+			os.makedirs(ivuecreate)
+	shutil.copyfile(ini, ivuecreateini2)	
+	
+	
 	a = open(ivuecreateini).read()
-	b = a.replace('<TVKINGS2UN>',username).replace('<TVKINGS2PW>',password)
+	b = a.replace('<HypersonicIPTV2UN>',username).replace('<HypersonicIPTV2PW>',password)
 	f = open(ivuecreateini, mode='w')
 	f.write(str(b))
 	f.close()
-	time.sleep(5)
 		
-	iVue_SETTINGS = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide','settings.xml'))
-	UseriVueSets = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide','oldsettings.xml'))
-	iVueSet = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvkings2/resources/ivue','ivuesettings.xml'))
-	iVueFold = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvkings2/resources/ivue'))
-	iVue_DATA = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/script.ivueguide/'))
 	if not xbmc.getCondVisibility('System.HasAddon(script.ivueguide)'):
 		install('iVue','https://raw.githubusercontent.com/totaltec2014/ivue2/master/script.ivueguide/script.ivueguide-3.0.3.zip')
 		install('iVue','https://raw.githubusercontent.com/totaltec2014/ivue2/master/xbmc.repo.ivueguide/xbmc.repo.ivueguide-0.0.1.zip')
@@ -67,6 +210,9 @@ def iVueInt():
 		xbmc.executebuiltin("UpdateAddonRepos")
 		xbmc.executebuiltin("UpdateLocalAddons")
 		time.sleep(5)
+		
+	if os.path.isfile(ivueaddons2ini):
+		os.remove(ivueaddons2ini)
 
 	if not os.path.isfile(iVue_SETTINGS):
 		if not os.path.exists(iVue_DATA):
@@ -78,12 +224,10 @@ def iVueInt():
 		if not os.path.exists(iVue_DATA):
 			os.makedirs(iVue_DATA)
 		shutil.copyfile(iVueSet, iVue_SETTINGS)
-	FullDB = os.path.join(iVueFold, 'ivuedb.zip')
-	dp = xbmcgui.DialogProgress()
-	dp.create("TV Kings","Copying DB",'', 'Please Wait')
-	unzip(FullDB,iVue_DATA,dp)
-	xbmc.log("Full iVue Master DB Copied")
 	xbmc.executebuiltin("Dialog.Close(busydialog)")
+	
+	
+	
 def unzip(_in, _out, dp):
 	__in = zipfile.ZipFile(_in,  'r')
 	
@@ -115,10 +259,44 @@ def unzip(_in, _out, dp):
 		
 	return True	
 	
+def amylist_install(name,url):
+    path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
+    dp = xbmcgui.DialogProgress()
+    dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Installing Channel List...",'', 'Please Wait')
+    lib=os.path.join(path, 'amylist.zip')
+    try:
+       os.remove(lib)
+    except:
+       pass
+    downloader.download(url, lib, dp)
+    addonfolder = iVue_DATA
+    time.sleep(3)
+    dp = xbmcgui.DialogProgress()
+    dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Installing Channel List...",'', 'Please Wait')
+    dp.update(0,"", "Installing Channel List... Please Wait")
+    unzip(lib,addonfolder,dp)
+    
+def drxskin_install(name,url):
+    path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
+    dp = xbmcgui.DialogProgress()
+    dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Installing Skin...",'', 'Please Wait')
+    lib=os.path.join(path, 'tvkings2.zip')
+    try:
+       os.remove(lib)
+    except:
+       pass
+    downloader.download(url, lib, dp)
+    addonfolder = V_drxskinpath
+    time.sleep(3)
+    dp = xbmcgui.DialogProgress()
+    dp.create("[COLOR darkgrey]TV kings[/COLOR]","Installing Skin...",'', 'Please Wait')
+    dp.update(0,"", "Installing Skin... Please Wait")
+    unzip(lib,addonfolder,dp)
+    
 def install(name,url):
     path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
     dp = xbmcgui.DialogProgress()
-    dp.create("TV Kings","Installing iVue TV Guide...",'', 'Please Wait')
+    dp.create("[COLOR darkgrey]TV kings[/COLOR]","Installing iVue TV Guide...",'', 'Please Wait')
     lib=os.path.join(path, 'content.zip')
     try:
        os.remove(lib)
@@ -128,7 +306,7 @@ def install(name,url):
     addonfolder = xbmc.translatePath(os.path.join('special://home','addons'))
     time.sleep(3)
     dp = xbmcgui.DialogProgress()
-    dp.create("TV Kings","Installing iVue TV Guide...",'', 'Please Wait')
+    dp.create("[COLOR darkgrey]TV Kings[/COLOR]","Installing iVue TV Guide...",'', 'Please Wait')
     dp.update(0,"", "Installing iVue TV Guide... Please Wait")
     print '======================================='
     print addonfolder

@@ -1,7 +1,7 @@
-<?xml version="1.1" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.tvkings2"
-       name="TV Kings"
-       version="3.1"
+       name="[COLOR darkgrey]TV Kings[/COLOR] [COLOR red]BETA Release[/COLOR]"
+       version="3.2"
        provider-name="TV Kings">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -12,9 +12,9 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">TV Kings buytvkings.mancavekodi.com</summary>
+    <summary lang="en">[COLOR darkgrey]TV Kings Premium buytvkings.mancavekodi.com[/COLOR]</summary>
     <language>en</language>
-    <description lang="en">TV Kings offers premium quality streams. buytvkings.mancavekodi.com</description>
+    <description lang="en">[COLOR darkgrey]TV Kings[/COLOR] Official Addon - The Future of Great Quality and Stable Streams - for more info go to [COLOR yellowgreen]buytvkings.mancavekodi.com[/COLOR]. Regards, TV kings Team.</description>
      <platform>all</platform>
   </extension>
 </addon>

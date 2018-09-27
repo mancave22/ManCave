@@ -237,8 +237,8 @@
 </addon>
 
 <addon id="plugin.video.tvkings2"
-       name="TV Kings"
-       version="3.1"
+       name="[COLOR darkgrey]TV Kings[/COLOR] [COLOR red]BETA Release[/COLOR]"
+       version="3.2"
        provider-name="TV Kings">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -249,40 +249,14 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">TV Kings buytvkings.mancavekodi.com</summary>
+    <summary lang="en">[COLOR darkgrey]TV Kings Premium buytvkings.mancavekodi.com[/COLOR]</summary>
     <language>en</language>
-    <description lang="en">TV Kings offers premium quality streams. buytvkings.mancavekodi.com</description>
+    <description lang="en">[COLOR darkgrey]TV Kings[/COLOR] Official Addon - The Future of Great Quality and Stable Streams - for more info go to [COLOR yellowgreen]buytvkings.mancavekodi.com[/COLOR]. Regards, TV kings Team.</description>
      <platform>all</platform>
   </extension>
 </addon>
 
-<addon id="plugin.video.youporn"
-	     name="YouPorn Reborn"
-	     version="1.0.0"
-	     provider-name="Man Cave Entertainment">
-  <requires>
-	<import addon="xbmc.python" version="2.1.0" />
-    <import addon="script.module.urlresolver" />
-    <import addon="script.module.urlresolver.xxx"/>
-  </requires>
-  <extension point="xbmc.python.script" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <platform>all</platform>
-    <summary lang="en">OVER 18 ONLY This is a fork all credit to original Devs</summary>
-    <description lang="en">YouPorn Scraper 18+ Only</description>
-    <disclaimer lang="en"></disclaimer>
-    <language></language>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum></forum>
-    <website></website>
-    <email></email>
-  </extension>
-</addon>
-
-<addon id="repository.mancave" name="Man Cave Repo" version="1.2" provider-name="Man Cave Entertainment">
+<addon id="repository.mancave" name="Man Cave Repo" version="1.3" provider-name="Man Cave Entertainment">
 	<extension point="xbmc.addon.repository" name="Man Cave Repository">
 			<info compressed="false">https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/mancave22/ManCave/master/zips/addons.xml.md5</checksum>
